@@ -31,6 +31,9 @@ header .nav li:nth-child(3) a {
   height: 0.32rem;
   align-items: center;
 }
+.searchForm input{
+  outline: none;
+}
 .logo img {
   display: block;
   width: 25vw;
@@ -65,12 +68,51 @@ header .nav li:nth-child(3) a {
   padding: 0.1rem;
   background-color: #fff;
 }
+#rotation{ 
+  width: 80%;
+  margin: 0 auto; 
+  position: relative;
+  
+} 
+.tt{
+  display: flex;
+}
+
+.tt>span{
+  display: inline-block;
+  height: 0.25rem;
+  text-align: center;
+  line-height: 0.25rem;
+  flex-grow: 1;
+}
+
+.tt>.cur{
+  background-color: #fff;
+  opacity: 0.7;
+}
+
+.tc{
+  display: none;
+  height: 100%;
+}
+.tc::-webkit-scrollbar{
+  width:0; 
+  height:0; 
+  display: none;
+} 
+.show{
+  display: block;
+}
+.imgbox .tc img{
+  width: 100%;
+
+}
 #midgrid{
   width: 100%;
   display: flex;
   position: relative;
   justify-content: space-around;
-  top: -0.1rem;
+  top: 0.2rem;
 }
 #midgrid img{
   width: 0.4rem;
@@ -81,7 +123,7 @@ header .nav li:nth-child(3) a {
 figure{
   width: 85%;
   margin: 0 auto;
-  /* margin-top: -0.8rem; */
+  margin-top: 0.4rem;
 }
 figure h2{
   margin-bottom: 0.03rem;
@@ -90,8 +132,6 @@ figure img {
   width: 100%;
   border-radius: 25px;
 }
-
-
 section{
   margin: 0.1rem 0.1rem 0 0.1rem;
 }

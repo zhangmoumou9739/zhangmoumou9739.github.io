@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="./font_3773143_mlwbitziz5e/iconfont.css">
     <link rel="stylesheet" href="./css/mine.css"/>
     <link rel="stylesheet" href="./css/nav.css">
-    <link rel="stylesheet" href="./css/mylogin.css">
   </head>
   <body>
     <script src="./js/rem.js"></script>
@@ -18,7 +17,7 @@
         <div class="loginJump">
           <img src="./images/mine/logo_main_gray.png" alt="" />
         </div>
-        <h4 id="adminBtn" href="javascript:void(0)">点击登录</h4>
+        <h4 id="adminBtn"><a href="./login.html">点击登录</a></h4>
       </div>
   
       <ul class="userinfo">
@@ -40,31 +39,7 @@
         </li>
       </ul>
     </header>
-    <div id="login" class="login">
-      <span><a id="closeBtn" href="javascript:void(0)">关闭</a></span>
-      <div id="login-title" class="login-title">
-          <a>登录</a>         
-      </div>
-      <form action="" method="post" id="fm" name="fm" onsubmit="checkform()">
-        <div>
-            <label for="user">账户：</label>
-            <input type="text" id="user" name="user" class="input" onfocus="testFocus1(this)" onblur="testBlur1(this)">
-            <span id="error1"></span>
-        </div>
 
-        <div>
-            <label for="pwd">密码：</label>
-            <input type="password" id="pwd" name="pwd" class="input" onfocus="testFocus(this)" onblur="testBlur(this)">
-            <span id="error2"></span>
-        </div>
-
-        <div>
-            <input type="submit" value="确认注册" id="loginSubmit" onclick="checkform()">
-        </div>
-    </form>
- 
-  
-  </div>
     <div class="history">
       <div class="title">
         <h4>播放记录</h4>
@@ -159,64 +134,15 @@
     </nav>
   <script>
     
-    var login=document.getElementById('login');
-    var bg=document.getElementById('bg');
-    var adminBtn=document.getElementById('adminBtn');
-    adminBtn.onclick=function(){
-        login.style.height = "70%";
-        error1.innerHTML = "";    
-        error2.innerHTML = "";     
-         // login.style.display = "block";
-    }
-    var closeBtn=document.getElementById('closeBtn');
-    closeBtn.onclick=function(){
-        login.style.height = "0%";
-        // login.style.display="none";
-        
-    }
-    var user = document.getElementById("user");
-    var error = document.getElementsByClassName("error");
-    var pwd = document.getElementById("pwd");
-    var input = document.getElementsByClassName("input");
-    function checkform(){
-        if(user.value.length < 6 && pwd.value.length < 6){
-          addEventListener('click',()=>alert('账户或密码格式错误'),{once:true})
-
-
-        }
-        else{
-          window.location.replace("./mainpage.html");
-  
-        }
-    } 
-    function testFocus1(that) {
-        if ((that.value.length >= 0 && that.value.length < 6) || that.value.length >11){
-            document.getElementById("error1").innerHTML = "请输入6~11位的用户名";
-        }
-    }
-    function testBlur1(that) {
-        if ((that.value.length>0 && that.value.length<6) || that.value.length >11){
-            document.getElementById("error1").innerHTML = "用户名应为6-11位";
-        }else if(that.value.length >= 6 &&that.value.length <= 11){
-            document.getElementById("error1").innerHTML = "";
-        }else{
-            document.getElementById("error1").innerHTML = "用户名不能为空"
-        }
-    }
-    function testFocus(that) {
-        if ((that.value.length >= 0 && that.value.length < 6) || that.value.length >18){
-            document.getElementById("error2").innerHTML = "请输入6~18位的密码";
-        }
-    }
-    function testBlur(that) {
-        if ((that.value.length>0 && that.value.length<6) || that.value.length >11){
-            document.getElementById("error2").innerHTML = "密码应为6-11位";
-        }else if(that.value.length >= 6 &&that.value.length <= 18){
-            document.getElementById("error2").innerHTML = "";
-        }else{
-            document.getElementById("error2").innerHTML = "密码不能为空";
-        }
-    }    
+    // var login=document.getElementById('login');
+    // var bg=document.getElementById('bg');
+    // var adminBtn=document.getElementById('adminBtn');
+    // adminBtn.onclick=function(){
+    //     login.style.height = "40%";
+    //     error1.innerHTML = "";    
+    //     error2.innerHTML = "";     
+    //      // login.style.display = "block";
+    // }
 
 
     var xmlhttp;
@@ -254,5 +180,6 @@
 		xmlhttp.send();
 
   </script>
+
   </body>
 </html>

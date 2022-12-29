@@ -6,7 +6,7 @@
        "img1":"../images/cheer/miniSpain.png",
        "a1":"西班牙",
        "p":"time",
-       "button":"预约",
+       "button":"已结束",
        "h4":"解说员：贺炜"
     },
     {
@@ -16,7 +16,7 @@
         "img1":"../images/cheer/miniSwitzerland.png",
         "a1":"瑞士",
         "p":"time",
-        "button":"预约",
+        "button":"已结束",
         "h4":"解说员：孙思辰"
      },
      {
@@ -26,7 +26,7 @@
         "img1":"../images/cheer/miniBrazil.png",
         "a1":"巴西",
         "p":"time",
-        "button":"预约",
+        "button":"已结束",
         "h4":"解说员：曾侃"
      },
      {
@@ -36,7 +36,7 @@
         "img1":"../images/cheer/miniArgentina.png",
         "a1":"阿根廷",
         "p":"time",
-        "button":"预约",
+        "button":"已结束",
         "h4":"解说员：贺炜"
      },
      {
@@ -46,7 +46,7 @@
         "img1":"../images/cheer/miniFrance.png",
         "a1":"法国",
         "p":"time",
-        "button":"预约",
+        "button":"未开始",
         "h4":"解说员：孙思辰"
      }
     

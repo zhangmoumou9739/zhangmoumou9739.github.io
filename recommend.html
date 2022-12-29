@@ -15,8 +15,11 @@
         <a href="./index.html">返回</a>
     </header>
     <div id="tab">
-        <div class="tc show"> <video controls>  
-            <source  class="tc show" src="./images/recommend/recommend1_1.mp4" alt=""></video></div>          
+        <div class="tc show"> 
+            <video controls>  
+                <source  class="tc show" src="./images/recommend/recommend1_1.mp4" alt="">
+            </video>
+        </div>          
             
         <div class = "counterpart">
             <a>CCTV-17《中华风物》</a>
@@ -29,8 +32,8 @@
                     鸭腹，莼鲈芳鲜，藕香蟹肥，与体验者一同探访运河边的地道风物！</p>
             </div> -->
         </div>
-    
-    <ul class="collect">
+
+    <ul id="collect">
         <li>       
             <a class="iconfont icon-dianzan"></a>
             <a>点赞</a>
@@ -43,7 +46,19 @@
             <a class="iconfont icon-pinglun"></a>
             <a>评论</a>
         </li>
-    </ul>    
+    </ul>
+    <div id="review-release">
+
+            <textarea  id="tx" placeholder="发布一条友善的评论" maxlength="200"></textarea>
+            <button class="btnReview">发布</button>
+        <div class="list">
+            <div class="item">
+                <div class="info">
+                    <p class="text"></p>       
+                </div>
+            </div>
+        </div>
+    </div>    
     <div id="attention">
         <img src="./images/recommend/attention.jpg" alt="">
         <span>新农研究院</span>
@@ -102,27 +117,12 @@
       </section>
 
       <script>
-        // var tt = tab.getElementsByClassName("miniview")[0];
-        // var span = tt.getElementsByTagName("span");
-        // var tc = tab.querySelectorAll(".tc");
-
-        // for(var i = 0; i<span.length; i++) {
-        //     span[i].index = i;
-
-        //         // 让所有的span去除cur类，所有的tc都隐藏。
-        //         for(var j = 0; j<span.length; j++){
-        //             span[j].classList.remove("cur");
-        //             tc[j].classList.remove("show");
-        //         }
-
-        //         this.classList.add("cur");
-        //         tc[this.index].classList.add("show");
-            
-        // }
+ 
         var btn = document.querySelector('#toggle');
         var video = document.querySelector('video');
 
         function printPipWindowDimenisons(evt){
+            e.preventDefault();
             var pipWindow = evt.target;
         }
         // video.addEventListener('enterpicP', enter);
@@ -138,8 +138,7 @@
                     
                 }
                 this.disabled = true;
-            }catch (error){
-                
+            }catch (error){         
 
             }finally{
                 this.disabled = false;
@@ -148,6 +147,69 @@
 
         btn.addEventListener('click', handleToggle);
 
+        var dataArr = [
+            {uname: 'rosie', imgSrc:'./images/recommend/rosie1.jpg'},
+            {uname: 'shishi', imgSrc:'./images/recommend/shishi.jpg'},
+            {uname: 'lisa', imgSrc:'./images/recommend/lisa.jpg'}
+       
+        ]
+        
+
+        var rewRelease = document.getElementById('review-release');
+        var review = document.getElementById('collect').getElementsByTagName('li');
+        // console.log(review)
+        review[2].onclick = function(){
+            rewRelease.style.display = "block";   
+        }
+        
+        const tx = document.querySelector('#tx');
+        const total = document.querySelector('.total');
+        const btnReview = document.querySelector('.btnReview');
+        const item = document.querySelector('.item');
+        const user = document.querySelector('.user')
+        var time = document.querySelector('.time');
+        // var nowtime = new Date();
+        
+        var showtime = function () {
+
+            var nowdate = new Date();
+            var year = nowdate.getFullYear();
+            var month = nowdate.getMonth() + 1;
+            var date = nowdate.getDate();
+            var day = nowdate.getDay();
+            var week = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+            var h = nowdate.getHours();
+            var m = nowdate.getMinutes();
+            return nowtime = year + "年" + month + "月" + date + "日" + week[day] + " " + h +":" + m ;
+        }
+        
+        tx.addEventListener('input' , () =>{
+            //trim()去除整段字符串首尾两侧的空白字符
+            total.children[0].innerHTML = tx.value.trim().length;
+        })
+
+        btnReview.addEventListener('click' , () =>{
+            if(!(tx.value.trim())){
+                return alert('请输入内容');
+            }
+            var num =  Math.floor(Math.random()*dataArr.length);
+
+            item.querySelector('.text').innerHTML += `
+            <img class="userpic" src=${dataArr[num].imgSrc}>
+            <p class = "user">${dataArr[num].uname}</p>
+            <p class="time">${showtime()}</p>
+            <p class = "message">${tx.value.trim()}</p>
+            
+            `;
+            tx.value = '';
+        })
+
+        tx.addEventListener('keydown' , e =>{
+            if(e.key === 'Enter'){
+                e.preventDefault();
+                btn.click();
+            }
+        })
       </script>
 </body>
 </html>

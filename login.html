@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/mylogin.css">
+    <title>Document</title>
+  
+</head>
+
+<body>
+    <script src="./js/rem.js"></script>
+    <div class="box">
+    
+        <div class="content">
+
+                <div class="mask"></div>
+                
+                <div class="login-content">
+                    <h1>登 录</h1>
+                    <form action="./index.html"  method="get" id="fm" name="fm" onsubmit="return checkform()">
+                        <div class="login-form" >
+                            <input type="text" id="username" class="username" placeholder="账号">
+                            <span class="error">账号应为6-11位</span>
+                            <input type="password" id="pwd" class="pwd" placeholder="密码">
+                            <span class="error">密码应为6-18位</span>
+                        </div>
+                        <input type="submit" class="login-btn">
+                        <div class="tips">
+                            <span>还没有账号?</span>
+                            <span>注册</span>
+                        </div>
+                    </form>
+                </div>
+        </div>
+    </div>
+
+  
+
+
+</body>
+<script>
+        var username = document.getElementById("username");
+        var error = document.getElementsByClassName("error");
+        var pwd = document.getElementById("pwd");
+
+
+        // onchange：内容改变；onfoucs：获得焦点；onblur：失去焦点。
+        user.onchange = checkuser;/* 函数名称，不是调用函数。 */
+        pwd.onchange = checkpwd;
+
+
+        function checkuser(){
+            if(username.value.length >= 6 && username.value.length <= 11){
+                error[0].style.display = "none";
+                return 1;
+            }
+            else{
+                error[0].style.display = "block";
+                return 0;
+            }
+        }
+
+        function checkpwd(){
+            if(pwd.value.length > 6 && pwd.value.length < 16){
+                error[1].style.display = "none";
+                return 1;
+            }
+            else{
+                error[1].style.display = "block";
+                return 0;
+            }
+        }
+
+        function checkform(){
+            var rs = checkuser()*checkpwd();
+            if(rs == 0){
+                // alert("不能为空！");
+                return false;
+            }
+            else{
+                return true;
+            }
+        } 
+</script>
+
+</html>

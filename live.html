@@ -39,6 +39,8 @@
               <li></li>
               <li></li>
           </ul>
+          <div class="prev">&lt;</div>
+          <div class="next">&gt;</div>
         </div>
         <div id="test"></div>
       </div>
@@ -51,7 +53,16 @@
       <div class="race">
           <img src="./images/live/sectiontitle2.png" alt="">
           <ul class="booking">
-
+            <div class="bookable">
+              <img src="./images/cheer/miniEngland.png" alt=""><a>英国</a><b>vs</b>
+              <img src="./images/cheer/miniFrance.png"><a>法国</a>
+              <button onclick ="time()" >点击预约</button>
+              <div id="once"></div>
+              <b id="time">10：20</b>
+              <h4>解说员：孙思辰</h4>
+              <div class="banclick"></div>
+            </div>
+       
       <div id="gotop">
           返回顶部 
       </div>      
@@ -65,15 +76,15 @@
         </li>
         <li>
           <img src="./images/live/play2.jpg" alt="" />
-          <p>《你好，世界杯》第1期</p>
+          <p>《你好，世界杯》第2期</p>
         </li>
         <li>
           <img src="./images/live/play1.jpg" alt="" />
-          <p>《你好，世界杯》第1期</p>
+          <p>《你好，世界杯》第3期</p>
         </li>
         <li>
           <img src="./images/live/play2.jpg" alt="" />
-          <p>《你好，世界杯》第1期</p>
+          <p>《你好，世界杯》第4期</p>
         </li>
       </ul>
       <div class="activity">
@@ -118,7 +129,7 @@
     </ul>
     </nav>
     <script>
-       var esico = document.getElementById('icolist').getElementsByTagName('li');
+    var esico = document.getElementById('icolist').getElementsByTagName('li');
     var eicolist = document.querySelector('#icolist');
     var eimglist = document.querySelector('#imglist');
     var etest = document.querySelector('#test');
@@ -145,12 +156,34 @@
       for (let index = 0; index < esico.length; index++) {
         esico[index].style.backgroundColor = '';
       }
-      if (m <esico.length){
-        esico[m].style.backgroundColor = '#9f9f98';
+      if (m < esico.length) {
+        esico[m].style.backgroundColor = '#fff';
       }
 
     }
 
+    function imgchange(n){
+      let lt = - (n  * 100)
+      imglist.style.marginLeft = lt + '%';
+      left = lt;
+    }
+    eprev.onclick = function(){
+      let prevgo = Math.floor(-left/100)-1;
+      if (prevgo == -1) {
+        prevgo =3;
+      }
+      imgchange(prevgo);
+      icochange(prevgo);
+    }
+
+    enext.onclick = function(){
+      let nextgo = Math.floor(-left/100)+1;
+      if (nextgo == 4) {
+        nextgo =0;
+      }
+      imgchange(nextgo);
+      icochange(nextgo);
+    }
 
     eicolist.onclick = function(){
       var tg = event.target;
@@ -166,7 +199,6 @@
     eimglist.onmouseout = function(){
       run();
     }
-
   
      var xmlhttp;
 		if (window.XMLHttpRequest) {
@@ -184,7 +216,7 @@
         function addLi(li){
           var n = ` 
             <div>   
-            <dl>${li.dl}</dl>
+           
             <div class="nation1"> 
             <img src = "${li.img}">
             <a>${li.a}</a>
@@ -193,9 +225,7 @@
             <img src = "${li.img1}">
             <a>${li.a1}</a>
             </div>
-             <p  onclick ="time()">${li.p}</p>
-              
-              <button>${li.button}</button>
+            <button >${li.button}</button> 
             </div>  
             <h4>${li.h4}</h4>
           `;
@@ -213,7 +243,7 @@
 		xmlhttp.open("GET", "./json/live.json", true);
 		xmlhttp.send();
 
-
+ 
 
     var gotop = document.querySelector("#gotop");
     var body = document.querySelector("body");
@@ -230,35 +260,69 @@
     })
 
 
-    // var button = document.getElementsByTagName("button");
-    function time(){
-      let second = document.querySelector("p");
-            let i = 10  // 倒计时秒数
-
-            // 定时器 每隔一秒变化一次（1000ms = 1s）
-            let t = setInterval(countDown, 1000);
-
-            function countDown() {
-                    console.log(i);
-                    if(i>=1){
-                      i--;
-                    second.innerHTML = i;
-                    }
-                    
 
 
-
-                    // // 60 秒倒计时结束
-                    if (i === 0)
-                    second.innerHTML = "时间已到";
-                        clearInterval();
-                        
-
-                    // i--;
-          
-        }
-    }
+    var nowD = new Date();
+    endD = new Date('2022/12/29 13:40:00'); 
+    var timediff = parseInt((endD - nowD)/60000);
+    console.log(timediff);
+    var btn = document.getElementsByTagName("button");
+    console.log(btn);
     
+    function time(){
+      // contrast_time();
+      // function contrast_time(){
+    
+        if( nowD.getTime() >= endD.getTime()){
+          alert('比赛已开始或结束')
+        }else{
+            var banclick = document.querySelector(".banclick");
+            banclick.style.visibility = "visible";
+            let minute = document.querySelector("button");
+            
+            var i = timediff  // 倒计时秒数
+            // 定时器 每隔一秒变化一次（1000ms = 1s）
+            if(i > 0){
+              minute.innerHTML =  "距比赛" + timediff + "分";
+              let t = setInterval(countDown, 500);
+            }if(i >= 60){
+              var hour = parseInt(i/60);
+              var minute2 = i - hour*60;
+              minute.innerHTML = "距比赛" + hour + "时" + minute2 + "分";
+              let t = setInterval(countDownHours, 500);
+            }
+           
+            
+            function countDown() {
+              console.log(i);
+                if(i>=1){
+                  i--;
+                  minute.innerHTML = "距比赛" + i + "分";    
+                }   
+                if (i == 0){
+                  minute.innerHTML = "时间已到";
+                  minute.style.backgroundColor = "#3454bd";
+                  minute.style.color = "#fff"
+            
+                  clearInterval();
+                }  
+            }
+            function countDownHours(){
+                if(i>0){
+                  minute2--;
+                  minute.innerHTML = "距比赛" + hour + "时" + minute2 + "分"; 
+                }    
+                if(hour != 0 && minute2 == 0){
+                  minute2 += 60;
+                  hour -= 1;
+                }
+            }
+        }
+              
+             
+      // }
+    }
+
     </script>
   </body>
 </html>

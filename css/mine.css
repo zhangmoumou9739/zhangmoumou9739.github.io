@@ -24,8 +24,11 @@ header .loginHeader {
   padding: 0.1rem;
   border-radius: 50%;
 }
-.loginHeader h4{
+.loginHeader h4 {
   font-size: 0.1666rem;
+}
+.loginHeader h4 a{
+  color: #000000;
 }
 #loginHeader{
   text-align: center;
